@@ -10,7 +10,7 @@ export type Goal = Atom | Compound<Functor, Args>;
 export type PredicateIndicator = Compound<"/", [Atom, number]>;
 
 /** Terms or objects that encode into terms. Uint8Array becomes a Prolog string. */
-export type Termlike = | Term | Literal | Uint8Array | { toProlog: () => string };
+export type Termlike = | Term | Literal | Uint8Array | Termlike[] | { toProlog: () => string };
 
 /** Prolog atom term. */
 export class Atom {
@@ -192,7 +192,7 @@ export function piTerm(name: string, arity: number) {
 }
 
 /** Converts the given term object into Prolog text. */
-export function toProlog(obj: unknown): string {
+export function toProlog(obj: Termlike): string {
 	switch (typeof obj) {
 	case "number":
 		return obj.toString();
