@@ -177,7 +177,7 @@ export class Literal {
 }
 
 // TODO: this doesn't check for symbols, spaces, etc.
-function validVar(name: unknown) {
+function validVar(name: string) {
 	if (typeof name !== "string" || name.length === 0)
 		return false;
 	if (name[0] === "_")
